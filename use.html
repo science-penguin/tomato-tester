@@ -1,11 +1,17 @@
-<div>Teachable Machine Image Model</div>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="description" content="A free online tool for classifing a tomato as either ripe or not ripe">
+<title>TomatoTester-USE</title>
+</head>
+<body style="background-color:">
+<h1 id="title">🍅Tomato Tester🍅</h1>
 <button type="button" onclick="init()">Start</button>
 <div id="webcam-container"></div>
 <div id="display"></div>
-
 <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
-
 <script type="text/javascript">
 const URL = "https://teachablemachine.withgoogle.com/models/urG5vST10/";
 let model, webcam, maxPredictions;
@@ -37,3 +43,15 @@ document.getElementById("display").innerHTML = "<p>UNRIPE</p>";
 }
 }
 </script>
+<script>
+function updateSize() {
+const text = "🍅Tomato Tester🍅"; 
+const canvas = document.createElement("canvas"); 
+const text_content = canvas.getContext("2d");
+text_content.font = "20px Arial";
+const width = text_content.measureText(text).width;
+const newSize = Math.floor(window.innerWidth / (width / 15));
+document.getElementById("title").style.setProperty("font-size", newSize + "px");
+</script>
+</body>
+</html>
