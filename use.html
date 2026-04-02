@@ -32,10 +32,14 @@ async function predict() {
 const prediction = await model.predict(webcam.canvas);
 let RipeProb = prediction[0].probability;
 let UnripeProb = prediction[1].probability;
-if(RipeProb>=UnripeProb) {
-document.getElementById("display").innerHTML =`<p>RIPE</p>`
+async function predict() {
+const prediction = await model.predict(webcam.canvas);
+let RipeProb = prediction[0].probability;
+let UnripeProb = prediction[1].probability;
+if (RipeProb >= UnripeProb) {
+document.getElementById("display").innerHTML = `<p>RIPE</p>`;
+} else {
+document.getElementById("display").innerHTML = `<p>UNRIPE</p>`;
 }
-if(RipeProb<UnripeProb) {
-document.getElementById("display").innerHTML =`<p>RIPE</p>`
 }
 </script>
