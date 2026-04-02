@@ -9,42 +9,31 @@
 <script type="text/javascript">
 const URL = "https://teachablemachine.withgoogle.com/models/urG5vST10/";
 let model, webcam, maxPredictions;
-
 async function init() {
-    const modelURL = URL + "model.json";
-    const metadataURL = URL + "metadata.json";
-
-    model = await tmImage.load(modelURL, metadataURL);
-    maxPredictions = model.getTotalClasses();
-
-    const flip = true;
-    webcam = new tmImage.Webcam(200, 200, flip);
-
-    // Rear camera
-    await webcam.setup({ facingMode: "environment" });
-    await webcam.play();
-
-    window.requestAnimationFrame(loop);
-
-    document.getElementById("webcam-container").appendChild(webcam.canvas);
+const modelURL = URL + "model.json";
+const metadataURL = URL + "metadata.json";
+model = await tmImage.load(modelURL, metadataURL);
+maxPredictions = model.getTotalClasses();
+const flip = true;
+webcam = new tmImage.Webcam(200, 200, flip);
+await webcam.setup({ facingMode: "environment" });
+await webcam.play();
+window.requestAnimationFrame(loop);
+document.getElementById("webcam-container").appendChild(webcam.canvas);
 }
-
 async function loop() {
-    webcam.update();
-    await predict();
-    window.requestAnimationFrame(loop);
+webcam.update();
+await predict();
+window.requestAnimationFrame(loop);
 }
-
 async function predict() {
-    const prediction = await model.predict(webcam.canvas);
-
-    let RipeProb = prediction[0].probability;
-    let UnripeProb = prediction[1].probability;
-
-    if (RipeProb >= UnripeProb) {
-        document.getElementById("display").innerHTML = "<p>RIPE</p>";
-    } else {
-        document.getElementById("display").innerHTML = "<p>UNRIPE</p>";
-    }
+const prediction = await model.predict(webcam.canvas);
+let RipeProb = prediction[0].probability;
+let UnripeProb = prediction[1].probability;
+if (RipeProb >= UnripeProb) {
+document.getElementById("display").innerHTML = "<p>RIPE</p>";
+} else {
+document.getElementById("display").innerHTML = "<p>UNRIPE</p>";
+}
 }
 </script>
