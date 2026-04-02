@@ -5,14 +5,15 @@
 <meta name="description" content="A free online tool for classifing a tomato as either ripe or not ripe">
 <title>TomatoTester-USE</title>
 </head>
-<body style="display: flex;justify-content: center; text-align: center; flex-direction: column; background-color: rgb(190,200,240)";>
+<body style="display: flex; justify-content: center; text-align: center; flex-direction: column; background-color: rgb(190,200,240);">
 <h1 id="title">🍅Tomato Tester🍅</h1>
-<button type="button" onclick="init()">Start</button>
+<button style="background-color: rgb(210,220,255)" id="run-start" type="button">Start</button>
 <div id="webcam-container"></div>
 <div id="display"></div>
 <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
 <script type="text/javascript">
+let is_running=0
 const URL = "https://teachablemachine.withgoogle.com/models/urG5vST10/";
 let model, webcam, maxPredictions;
 async function init() {
@@ -26,6 +27,7 @@ await webcam.setup({ facingMode: "environment" });
 await webcam.play();
 window.requestAnimationFrame(loop);
 document.getElementById("webcam-container").appendChild(webcam.canvas);
+(webcam.canvas).style.setProperty("width", "100%")
 }
 async function loop() {
 webcam.update();
@@ -42,16 +44,23 @@ document.getElementById("display").innerHTML = "<p>RIPE</p>";
 document.getElementById("display").innerHTML = "<p>UNRIPE</p>";
 }
 }
-</script>
-<script>
 function updateSize() {
 const text = "🍅Tomato Tester🍅"; 
-const canvas = document.createElement("canvas"); 
+const canvas = document.createElement("canvas");
 const text_content = canvas.getContext("2d");
 text_content.font = "20px Arial";
 const width = text_content.measureText(text).width;
 const newSize = Math.floor(window.innerWidth / (width / 15));
 document.getElementById("title").style.setProperty("font-size", newSize + "px");
+if(is_running==0) {
+const text_2 = "Learn more"; 
+const canvas_2 = document.createElement("canvas"); 
+const text_content_2 = canvas_2.getContext("2d");
+text_content_2.font = "20px Arial";
+const width_2 = text_content_2.measureText(text_2).width;
+const newSize_2 = Math.floor(window.innerWidth / (width_2 / 15));
+document.getElementById("run-start").style.setProperty("font-size", newSize_2 + "px");
+}
 }
 function checkDevice() {
 const width_for_check = window.innerWidth;
@@ -59,7 +68,7 @@ const height_for_check = window.innerHeight;
 const ratio = height_for_check / width_for_check;
 const isMobile = ratio > 1;
 if (!isMobile) {
-window.location.href = "/desktop-home";
+window.location.href = "/desktop-use";
 }
 }
 function onResize() {
@@ -68,6 +77,7 @@ checkDevice();
 }
 window.addEventListener("resize", onResize);
 onResize()
+document.getElementById("run-start").addEventListener("click", ()=>{document.getElementById("run-start").remove();is_running=1;init()})
 </script>
 </body>
 </html>
