@@ -23,15 +23,15 @@
 <div style="height:0.5vh"></div>
 <button style="background-color: rgb(210,220,255)" id="button_2">Use</button>
 <script>
-document.getElementById("button_1").addEventListener("click", ()=>{window.location.href = "/about"});
-document.getElementById("button_2").addEventListener("click", ()=>{window.location.href = "/use"});
+document.getElementById("button_1").addEventListener("click", ()=>{window.location.href = "about"});
+document.getElementById("button_2").addEventListener("click", ()=>{window.location.href = "use"});
 function checkDevice() {
 const width_for_check = window.innerWidth;
 const height_for_check = window.innerHeight;
 const ratio = height_for_check / width_for_check;
 const isMobile = ratio > 1;
 if (!isMobile) {
-window.location.href = "/desktop-home";
+window.location.href = "desktop-home";
 }
 }
 updateSize();
