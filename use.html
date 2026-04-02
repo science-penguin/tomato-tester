@@ -1,7 +1,7 @@
 <div>Teachable Machine Image Model</div>
 <button type="button" onclick="init()">Start</button>
 <div id="webcam-container"></div>
-<div id="label-container"></div>
+<div id="display"></div>
 <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
 <script type="text/javascript">
@@ -33,6 +33,9 @@ const prediction = await model.predict(webcam.canvas);
 let RipeProb = prediction[0].probability;
 let UnripeProb = prediction[1].probability;
 if(RipeProb>=UnripeProb) {
-document.
+document.getElementById("display").innerHTML =`<p>RIPE</p>`
+}
+if(RipeProb<UnripeProb) {
+document.getElementById("display").innerHTML =`<p>RIPE</p>`
 }
 </script>
