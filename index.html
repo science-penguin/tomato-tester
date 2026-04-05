@@ -65,6 +65,10 @@ const width_4 = text_content_4.measureText(text_4).width;
 const newSize_4 = Math.floor(window.innerWidth / (width_4 / 15));
 document.getElementById("button_1").style.setProperty("font-size", newSize_4 + "px");
 document.getElementById("button_2").style.setProperty("font-size", newSize_4 + "px");
+canvas.remove();
+canvas_2.remove();
+canvas_3.remove();
+canvas_4.remove();
 }
 function onResize() {
 updateSize();
