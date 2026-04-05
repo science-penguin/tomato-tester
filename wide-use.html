@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="description" content="Please use mobile">
+<title>please use mobile</title>
+</head>
+<body style="display: flex;justify-content: center; text-align: center; flex-direction: column; background-color: rgb(190,200,240);">
+<h1 id="title">Please switch to mobile or to a narrow screen</h1>
+<img style="width:50vw; display:block; margin:0 auto;" src="mobile-to-desktop.png">
+<script>
+function checkDevice() {
+const width_for_check = window.innerWidth;
+const height_for_check = window.innerHeight;
+const ratio = height_for_check / width_for_check;
+const isMobile = ratio > 1;
+if (isMobile) {
+window.location.href = "/use";
+}
+}
+updateSize();
+function updateSize() {
+const text = "Please switch to mobile or to a narrow screen"; 
+const canvas = document.createElement("canvas"); 
+const text_content = canvas.getContext("2d");
+text_content.font = "20px Arial";
+const width = text_content.measureText(text).width;
+const newSize = Math.floor(window.innerWidth / (width / 15));
+document.getElementById("title").style.setProperty("font-size", newSize + "px");
+}
+function onResize() {
+updateSize();
+checkDevice();
+}
+window.addEventListener("resize", onResize);
+onResize()
+</script>
+</body>
+</html>
