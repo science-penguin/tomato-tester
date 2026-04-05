@@ -43,8 +43,6 @@ document.getElementById("display").textContent = "RIPE";
 } else {
 document.getElementById("display").textContent = "UNRIPE";
 }
-canvas.remove();
-canvas_2.remove();
 }
 function updateSize() {
 const text = "🍅Tomato Tester🍅"; 
@@ -71,6 +69,8 @@ const width_2 = text_content_2.measureText(text_2).width;
 const newSize_2 = Math.floor(window.innerWidth / (width_2 / 15));
 document.getElementById("display").style.setProperty("font-size", newSize_2 + "px");
 }
+canvas.remove();
+canvas_2.remove();
 }
 function checkDevice() {
 const width_for_check = window.innerWidth;
