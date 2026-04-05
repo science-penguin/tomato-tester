@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="description" content="A free online tool for classifing a tomato as either ripe or not ripe">
+<title>TomatoTester-HOME</title>
+</head>
+<body style="display: flex; flex-direction: column; align-items: center; text-align: center; background-color: rgb(190,200,240);">
+<h1 id="title">🍅Tomato Tester🍅</h1>
+<p style="margin: 0;" id="text_1"><strong>404</strong></p>
+<p style="margin: 0;" id="text_2"><strong>Unknown Page</strong></p>
+<p style="margin: 0;" id="text_3"><strong><a href="/">Return Home</a></strong></p>
+<script>
+function checkDevice() {
+const width_for_check = window.innerWidth;
+const height_for_check = window.innerHeight;
+const ratio = height_for_check / width_for_check;
+const isMobile = ratio > 1;
+if (!isMobile) {
+window.location.href = "/wide-404";
+}
+}
+updateSize();
+function updateSize() {
+const text = "🍅Tomato Tester🍅"; 
+const canvas = document.createElement("canvas"); 
+const text_content = canvas.getContext("2d");
+text_content.font = "20px Arial";
+const width = text_content.measureText(text).width;
+const newSize = Math.floor(window.innerWidth / (width / 15));
+document.getElementById("title").style.setProperty("font-size", newSize + "px");
+const text_2 = "404"; 
+const canvas_2 = document.createElement("canvas"); 
+const text_content_2 = canvas_2.getContext("2d");
+text_content_2.font = "20px Arial";
+const width_2 = text_content_2.measureText(text_2).width;
+const newSize_2 = Math.floor(window.innerWidth / (width_2 / 15));
+document.getElementById("text_1").style.setProperty("font-size", newSize_2 + "px");
+const text_3 = "Unknown Page"; 
+const canvas_3 = document.createElement("canvas"); 
+const text_content_3 = canvas_3.getContext("2d");
+text_content_3.font = "20px Arial";
+const width_3 = text_content_2.measureText(text_3).width;
+const newSize_3 = Math.floor(window.innerWidth / (width_3 / 20));
+document.getElementById("text_2").style.setProperty("font-size", newSize_3 + "px");
+document.getElementById("text_3").style.setProperty("font-size", newSize_3 + "px");
+canvas.remove();
+canvas_2.remove();
+canvas_3.remove();
+}
+function onResize() {
+updateSize();
+checkDevice();
+}
+window.addEventListener("resize", onResize);
+onResize()
+</script>
+</body>
+</html>
